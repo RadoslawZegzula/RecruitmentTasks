@@ -1,5 +1,5 @@
 from peewee import *
-db = SqliteDatabase('programlogic/personDatabase.db')
+db = SqliteDatabase('personDatabase.db')
 
 class Login(Model):
         uuid = CharField(max_length=70, null=True)

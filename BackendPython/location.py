@@ -1,5 +1,5 @@
 from peewee import *
-db = SqliteDatabase('programlogic/personDatabase.db')
+db = SqliteDatabase('personDatabase.db')
 
 class Location(Model):
         streetNumber = IntegerField(null=True)
