@@ -2,7 +2,7 @@
 from peewee import *
 from login import Login
 from location import Location
-db = SqliteDatabase('programlogic/personDatabase.db')
+db = SqliteDatabase('personDatabase.db')
 
 class Person(Model):
         gender = CharField(max_length=70, null=True)    
