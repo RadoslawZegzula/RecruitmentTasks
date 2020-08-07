@@ -7,7 +7,6 @@ from login import Login
 from person import Person
 db = SqliteDatabase('personDatabase.db')
 
-
 class DataPopulator:
     def countDaysToBirthday(self, date, todayDateFromUser = ""):
         if date ==  "":

@@ -1,9 +1,6 @@
 import pytest
 import datetime
-
-from mainclass import *
-
-import sys
+from dataPopulator import *
 
 def test_countDaysToBirthday():
     dp = DataPopulator()
