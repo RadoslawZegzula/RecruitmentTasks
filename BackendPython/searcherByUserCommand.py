@@ -20,6 +20,12 @@ class SearcherByUserCommand:
         and args.firstOptional.isdigit() == True):
             self.printNMostPopularCities(int(args.firstOptional))
             return
+        if(args.category =="pop-pass" 
+        and args.firstOptional is not None 
+        and args.firstOptional != "" 
+        and args.firstOptional.isdigit() == True):
+            self.printNMostPopularPassword(int(args.firstOptional))
+            return        
         if(args.category =="safest-pass"):
             self.printSafestPassword()
             return
