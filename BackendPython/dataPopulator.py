@@ -8,12 +8,14 @@ from person import Person
 db = SqliteDatabase('personDatabase.db')
 
 class DataPopulator:
-    def countDaysToBirthday(self, date, todayDateFromUser = ""):
-        if date ==  "":
-          return 0
-        year = int(date[0:4])
-        month = int(date[5:7])
-        day = int(date[8:10])
+    def countDaysToBirthday(self, birthdayDate, todayDateFromUser = ""):
+        
+        if birthdayDate == "":
+            return 0
+
+        year = int(birthdayDate[0:4])
+        month = int(birthdayDate[5:7])
+        day = int(birthdayDate[8:10])
         addOneIfSpecialFebruary = 0
 
         if month == 2 and day == 29:
