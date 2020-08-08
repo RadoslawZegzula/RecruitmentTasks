@@ -5,13 +5,13 @@ from person import Person
 from peewee import *
 from playhouse.shortcuts import model_to_dict
 
-class SearcherByUserCommand:    
-    def __init__(self, args):
-        if(args.category =="persons-percents"):
-            self.personPercentes()
+class SearcherByUserCommand:      
+    def displayDataByUserCommand(self, args):
+        if(args.category =="persons-percents"):           
+            self.printPersonPercentes()
             return
         if(args.category =="avg" 
-        and (args.firstOptional == 'male' or args.firstOptional == 'female' or args.firstOptional == 'all')):
+        and (args.firstOptional == 'male' or args.firstOptional == 'female' or args.firstOptional == 'all')):           
             self.printWantedAvgAge(args.firstOptional)
             return
         if(args.category =="pop-cities" 
@@ -24,16 +24,16 @@ class SearcherByUserCommand:
         and args.firstOptional is not None 
         and args.firstOptional != "" 
         and args.firstOptional.isdigit() == True):
-            self.printNMostPopularPassword(int(args.firstOptional))
-            return        
-        if(args.category =="safest-pass"):
+            self.printNMostPopularPassword(int(args.firstOptional))   
+            return  
+        if(args.category =="safest-pass"):           
             self.printSafestPassword()
             return
         if(args.category =="persons-birth"):
-            self.printUsersFromBirthDateRange(args.firstOptional, args.secondOptional)
+            self.printUsersFromBirthDateRange(args.firstOptional, args.secondOptional)  
             return
-        
-    def personPercentes(self):
+    
+    def printPersonPercentes(self):
         malesCount = 0
         femalesCount = 0
         twoGendersCount= 0
@@ -47,6 +47,7 @@ class SearcherByUserCommand:
         malePercentage = "{:.0%}".format(malesCount / twoGendersCount)
         femalePercentage = "{:.0%}".format(femalesCount / twoGendersCount)
         print("males:" + malePercentage + " females:" + femalePercentage)
+        return malePercentage, femalePercentage
   
     def printWantedAvgAge(self, firstOptional):
         malesCount = 0
@@ -73,15 +74,15 @@ class SearcherByUserCommand:
 
         if(firstOptional == 'male'):
             print(" Males avg age:" + str(maleAvgAge))
-            return
+            return maleAvgAge
         
         if(firstOptional == "female"):
             print(" Females avg age:" + str(femaleAvgAge))
-            return
+            return femaleAvgAge
         
         if(firstOptional == 'all'):
             print(" Persons avg age:" + str(personsAvgAge))
-            return
+            return personsAvgAge
 
     def printNMostPopularCities(self, n):
         dict = {} 
@@ -94,9 +95,11 @@ class SearcherByUserCommand:
             return
         
         dict = sorted(dict.items(), key=lambda x: x[1], reverse=True)
-        
+        result = []
         for i in range(0, n):
             print(dict[i])
+            result.append(dict[i])
+        return result
         
     def printNMostPopularPassword(self, n):
         dict = {} 
@@ -110,8 +113,11 @@ class SearcherByUserCommand:
         
         dict = sorted(dict.items(), key=lambda x: x[1], reverse=True)
 
+        result = []
         for i in range(0, n):
             print(dict[i])
+            result.append(dict[i])
+        return result
 
     def printSafestPassword(self):    
         safestPassword = ""
@@ -148,6 +154,7 @@ class SearcherByUserCommand:
                 safestPassword = item.password        
             
         print("Safest Password: " + safestPassword + "  Points: " + str(mostPoints))
+        return safestPassword
 
     def printUsersFromBirthDateRange(self, LeftDate, rightDate):
         
@@ -164,8 +171,11 @@ class SearcherByUserCommand:
             print("Left date should be earlier that right date")
             return
 
+        result = []
         for person in Person.select():
             personDate = datetime.datetime.strptime(person.personDate[0:10], "%Y-%m-%d").date()
             if(personDate >= date_left and personDate <= date_right):
-                print("--Person")
-                print(model_to_dict(person))
+                result.append(model_to_dict(person))
+        
+        print(result)
+        return result

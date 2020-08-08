@@ -7,4 +7,5 @@ parser.add_argument("-f", "--firstOptional", help = "First optional argument")
 parser.add_argument("-s", "--secondOptional", help = "Second optional argument")
 args = parser.parse_args()
 
-sbuc = SearcherByUserCommand(args)
+sbuc = SearcherByUserCommand()
+sbuc.displayDataByUserCommand(args)
