@@ -1,7 +1,7 @@
 # Backend Python recruitment task
 
 
-# Usage
+# Gui Usage
 The guiq.py file contains logic for querying person database
 
 **python guiq.py persons-percents**    
@@ -27,6 +27,17 @@ The guiq.py file contains logic for querying person database
 
 **python guiq.py persons-birth -f 1997-07-26 -s 1998-04-03**   
 --Displays persons that have a birthday in the given range   
+
+# DataPopulator class Example Usage
+**Create tables**  
+db = SqliteDatabase('personDatabase.db')  
+db.create_tables([Location,Login,Person])  
+**populateDataFromApi**  
+dp = DataPopulator()  
+dp.populateDataFromApi()  
+
+# Tests
+**pytest**  
 
 # Installation
 1. Download
