@@ -1,6 +1,6 @@
 import pytest
 import datetime
-from dataPopulator import *
+from dataPopulator import DataPopulator
 
 def test_countDaysToBirthday_blankBirthDate():
     dp = DataPopulator()
